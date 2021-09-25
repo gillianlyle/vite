@@ -1,40 +1,47 @@
-<script setup>
-import { ref } from 'vue'
-
-defineProps({
-  msg: String
-})
-
-const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <div :class="{ error: v$.firstName.$errors.length }">
+    <label for="firstName">First name:</label>
+    <input id="firstName" class="input" v-model="firstName">
+    <div class="input-errors" v-for="error of v$.firstName.$errors" :key="error.$uid">
+      <div class="error-msg">{{ error.$message }}</div>
+    </div>
+  </div>
 </template>
 
+<script>
+  import useVuelidate from '@vuelidate/core'
+  import { required, helpers } from '@vuelidate/validators'
+
+  export default {
+    name: 'HelloWorld',
+    setup () {
+      return { v$: useVuelidate() }
+    },
+    data () {
+      return {
+        firstName: '',
+      }
+    },
+    validations () {
+      return {
+        firstName: { required: helpers.withMessage('First name is required', required), $autoDirty: true, $lazy: true },
+      }
+    }
+  }
+
+</script>
+
+<script setup>
+
+</script>
+
 <style scoped>
-a {
-  color: #42b983;
+.input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
 }
+
+.error-msg {
+  color:red;
+}
+
 </style>
