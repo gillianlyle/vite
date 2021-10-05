@@ -1,29 +1,35 @@
 <template>
-    <label :for="id">{{ label }}</label>
-    <input 
-        :id="id" 
-        class="base-input" 
-        :placeholder="placeholder" 
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)" />
+  <label :for="id">{{ label }}</label>
+  <input 
+    :id="id" 
+    class="base-input" 
+    :placeholder="placeholder" 
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  >
 </template>
 <script>
 export default {
     name: 'BaseInput',
     props:{
         id:{
-            type: String
+            type: String,
+            default: ''
         },
         label: {
-            type: String
+            type: String,
+            default: ''
         },
         placeholder: {
-            type: String
+            type: String,
+            default: ''
         },
         modelValue: {
-            type: String
+            type: String,
+            default: ''
         }
     },
+    emits: ['update:modelValue'],
 }
 </script>
 <style scoped>

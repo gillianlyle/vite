@@ -2,13 +2,19 @@
   <div :class="{ error: v$.firstName.$errors.length }">
     <BaseInput 
       id="firstName" 
-      class="input" 
       v-model="firstName" 
+      class="input" 
       label="First name" 
       placeholder="Enter first name" 
     />
-    <div class="input-errors" v-for="error of v$.firstName.$errors" :key="error.$uid">
-      <div class="error-msg">{{ error.$message }}</div>
+    <div
+      v-for="error of v$.firstName.$errors"
+      :key="error.$uid"
+      class="input-errors"
+    >
+      <div class="error-msg">
+        {{ error.$message }}
+      </div>
     </div>
   </div>
 </template>
