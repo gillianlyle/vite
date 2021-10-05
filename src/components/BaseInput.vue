@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable -->
   <label :for="id">{{ label }}</label>
   <input 
     :id="id" 
@@ -7,6 +8,7 @@
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
   >
+  <!-- eslint-enable -->
 </template>
 <script>
 export default {

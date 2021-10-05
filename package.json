@@ -18,6 +18,7 @@
     "autoprefixer": "^10.3.4",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.19.0",
+    "eslint-plugin-vuejs-accessibility": "^0.7.1",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.15",
     "vite": "^2.5.10"
